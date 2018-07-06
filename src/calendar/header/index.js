@@ -30,7 +30,7 @@ class CalendarHeader extends Component {
     this.onPressLeft = this.onPressLeft.bind(this);
     this.onPressRight = this.onPressRight.bind(this);
     this.setDefaultMonthFormat = this.setDefaultMonthFormat.bind(this);
-    this.setDefaultMonthFormat(this.props.monthFormat);
+    this.setDefaultMonthFormat(props.monthFormat);
   }
 
   setDefaultMonthFormat(format) {
