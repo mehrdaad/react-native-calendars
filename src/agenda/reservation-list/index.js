@@ -125,7 +125,7 @@ class ReactComp extends Component {
 
   getReservationsForDay(iterator, props) {
     const day = iterator.clone();
-    const res = props.reservations[day.toString('yyyy-MM-dd')];
+    const res = props.reservations[day.format('YYYY-MM-DD')];
     if (res && res.length) {
       return res.map((reservation, i) => {
         return {
@@ -180,7 +180,7 @@ class ReactComp extends Component {
   }
 
   render() {
-    if (!this.props.reservations || !this.props.reservations[this.props.selectedDay.toString('yyyy-MM-dd')]) {
+    if (!this.props.reservations || !this.props.reservations[this.props.selectedDay.format('YYYY-MM-DD')]) {
       if (this.props.renderEmptyData) {
         return this.props.renderEmptyData();
       }
