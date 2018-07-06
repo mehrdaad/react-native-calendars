@@ -91,10 +91,10 @@ export default class AgendaView extends Component {
         // Display loading indicador. Default = false
     displayLoadingIndicator: PropTypes.bool,
         //calendar type.
-    calendarType: PropTypes.oneOf(['gregorian','jalaali'])
+    type: PropTypes.oneOf(['gregorian','jalaali'])
   };
   static defaultProps = {
-    calendarType: 'gregorian',
+    type: 'gregorian',
   }
 
   constructor(props) {
@@ -106,7 +106,7 @@ export default class AgendaView extends Component {
     this.scrollTimeout = undefined;
     this.headerState = 'idle';
     let selectedDay, topDay;
-    if (this.props.calendarType === 'jalaali') {
+    if (this.props.type === 'jalaali') {
       selectedDay = jMoment.utc();
       topDay = jMoment.utc();
     }
