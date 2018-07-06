@@ -77,8 +77,7 @@ class CalendarList extends Component {
       console.log(rangeDateStr);
       console.log('rangeDate');
       console.log(rangeDate);
-      
-      
+
       texts.push(rangeDateStr);
             /*
              * This selects range around current shown month [-0, +2] or [-1, +1] month for detail calendar rendering.
@@ -217,6 +216,8 @@ class CalendarList extends Component {
   }
 
   render() {
+    console.log('rows');
+    console.log(this.state.rows);
     return (
             <FlatList
                 onLayout={this.onLayout}
