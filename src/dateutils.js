@@ -67,8 +67,6 @@ function page(type, xd, firstDayOfWeek) {
 }
 
 module.exports = {
-  gregorian,
-  jalaali,
   weekDayNames,
   sameMonth,
   sameDate,

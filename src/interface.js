@@ -24,8 +24,6 @@ function parseDate(type, d) {
 }
 
 module.exports = {
-  gregorian,
-  jalaali,
   xdateToData,
   parseDate
 };
