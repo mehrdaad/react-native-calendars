@@ -88,11 +88,6 @@ function formatMonthYear(date) {
   return date.format('MMMM YYYY');
 }
 
-function formatWith(date, format) {
-  return date.format(format);
-}
-
-
 module.exports = {
   weekDayNames,
   sameMonth,
@@ -104,5 +99,4 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
-  formatWith
 };

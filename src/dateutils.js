@@ -72,13 +72,6 @@ function formatMonthYear(type, date) {
   return gregorian.formatMonthYear(date);
 }
 
-function formatWith(type, date, format) {
-  if (type === 'jalaali') {
-    return jalaali.formatWith(date, format);
-  }
-  return gregorian.formatMonthYear(date, format);
-}
-
 module.exports = {
   weekDayNames,
   sameMonth,
@@ -90,5 +83,4 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
-  formatWith
 };
