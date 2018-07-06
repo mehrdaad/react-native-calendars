@@ -312,7 +312,7 @@ export default class AgendaView extends Component {
 
   onDayChange(day) {
     const newDate = parseDate(day);
-    const withAnimation = dateutils.sameMonth(newDate, this.state.selectedDay);
+    const withAnimation = dateutils.sameMonth(this.props.type, newDate, this.state.selectedDay);
     this.calendar.scrollToDay(day, this.calendarOffset(), withAnimation);
     this.setState({
       selectedDay: parseDate(day)
@@ -339,7 +339,7 @@ export default class AgendaView extends Component {
 
   render() {
     const agendaHeight = Math.max(0, this.viewHeight - HEADER_HEIGHT);
-    const weekDaysNames = dateutils.weekDayNames(this.props.firstDay);
+    const weekDaysNames = dateutils.weekDayNames(this.props.type, this.props.firstDay);
     const weekdaysStyle = [this.styles.weekdays, {
       opacity: this.state.scrollY.interpolate({
         inputRange: [agendaHeight - HEADER_HEIGHT, agendaHeight],

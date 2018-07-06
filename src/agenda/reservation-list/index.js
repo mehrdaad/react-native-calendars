@@ -59,7 +59,7 @@ class ReactComp extends Component {
 
   updateReservations(props) {
     const reservations = this.getReservations(props);
-    if (this.list && !dateutils.sameDate(props.selectedDay, this.selectedDay)) {
+    if (this.list && !dateutils.sameDate(props.type, props.selectedDay, this.selectedDay)) {
       let scrollPosition = 0;
       for (let i = 0; i < reservations.scrollPosition; i++) {
         scrollPosition += this.heights[i] || 0;
@@ -72,7 +72,7 @@ class ReactComp extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if (!dateutils.sameDate(props.topDay, this.props.topDay)) {
+    if (!dateutils.sameDate(props.type, props.topDay, this.props.topDay)) {
       this.setState({
         reservations: []
       }, () => {
@@ -97,7 +97,7 @@ class ReactComp extends Component {
     const row = this.state.reservations[topRow];
     if (!row) return;
     const day = row.day;
-    const sameDate = dateutils.sameDate(day, this.selectedDay);
+    const sameDate = dateutils.sameDate(this.props.type, day, this.selectedDay);
     if (!sameDate && this.scrollOver) {
       this.selectedDay = day.clone();
       this.props.onDayChange(day.clone());
