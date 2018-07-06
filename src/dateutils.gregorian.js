@@ -51,9 +51,6 @@ function weekDayNames(firstDayOfWeek = 0) {
 
 function page(xd, firstDayOfWeek) {
   const days = month(xd);
-    // for (let i = 0; i < days.length; i++) {
-    //   console.log(days[i].format())
-    // }
   let before = [], after = [];
 
   const fdow = ((7 + firstDayOfWeek) % 7) || 7;

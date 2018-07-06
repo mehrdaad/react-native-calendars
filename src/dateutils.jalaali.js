@@ -1,6 +1,5 @@
 const Moment = require('moment');
 const jMoment = require('moment-jalaali');
-Moment.locale('fa');
 
 function sameMonth(a, b) {
   return a instanceof Moment && b instanceof Moment &&
@@ -58,9 +57,6 @@ function dayOfWeek(xd) {
 
 function page(xd, firstDayOfWeek) {
   const days = month(xd);
-    // for (let i = 0; i < days.length; i++) {
-    //   console.log(days[i].format('jYYYY-jMM-jDD'));
-    // }
   let before = [], after = [];
 
   const fdow = ((7 + firstDayOfWeek) % 7) || 7;
@@ -82,18 +78,10 @@ function page(xd, firstDayOfWeek) {
   if (isLTE(from, days[0])) {
     before = fromTo(from, days[0]);
   }
-    // console.log('-------------');
-    // for (let i = 0; i < before.length; i++) {
-    //   console.log(before[i].format('jYYYY-jMM-jDD'));
-    // }
 
   if (isGTE(to, days[days.length - 1])) {
     after = fromTo(days[days.length - 1], to);
   }
-    // console.log('++++++++++++++');
-    // for (let i = 0; i < after.length; i++) {
-    //   console.log(after[i].format('jYYYY-jMM-jDD'));
-    // }
 
   return before.concat(days.slice(1, days.length - 1), after);
 }
