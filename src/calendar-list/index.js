@@ -178,7 +178,6 @@ class CalendarList extends Component {
       const rowShouldBeRendered = rowIsCloseToViewable(i, 1);
       if (rowShouldBeRendered && !rowclone[i].getTime) {
         val = dateutils.addMonths(this.props.type, this.state.openDate, i - this.props.pastScrollRange);
-        dateutils.mont;
       } else if (!rowShouldBeRendered) {
         val = this.state.texts[i];
       }
