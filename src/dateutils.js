@@ -1,86 +1,74 @@
-const XDate = require('xdate');
+/**
+ * Copyright 2016 Reza (github.com/rghorbani).
+ *
+ * @flow
+ */
 
-function sameMonth(a, b) {
-  return a instanceof XDate && b instanceof XDate &&
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth();
-}
+'use strict';
 
-function sameDate(a, b) {
-  return a instanceof XDate && b instanceof XDate &&
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate();
-}
+const gregorian = require('./dateutils.gregorian');
+const jalaali = require('./dateutils.jalaali');
+const Moment = require('moment');
 
-function isGTE(a, b) {
-  return b.diffDays(a) > -1;
-}
-
-function isLTE(a, b) {
-  return a.diffDays(b) > -1;
-}
-
-function fromTo(a, b) {
-  const days = [];
-  let from = +a, to = +b;
-  for (; from <= to; from = new XDate(from, true).addDays(1).getTime()) {
-    days.push(new XDate(from, true));
+function sameMonth(type, a, b) {
+  if (type === 'jalaali') {
+    return jalaali.sameMonth(a, b);
   }
-  return days;
+  return gregorian.sameMonth(a, b);
 }
 
-function month(xd) {
-  const year = xd.getFullYear(), month = xd.getMonth();
-  const days = new Date(year, month + 1, 0).getDate();
-
-  const firstDay = new XDate(year, month, 1, 0, 0, 0, true);
-  const lastDay = new XDate(year, month, days, 0, 0, 0, true);
-
-  return fromTo(firstDay, lastDay);
+function sameDate(type, a, b) {
+  return a instanceof Moment && b instanceof Moment &&
+        a.year() === b.year() &&
+        a.month() === b.month() &&
+        a.date() === b.date();
 }
 
-function weekDayNames(firstDayOfWeek = 0) {
-  let weekDaysNames = XDate.locales[XDate.defaultLocale].dayNamesShort;
-  const dayShift = firstDayOfWeek % 7;
-  if (dayShift) {
-    weekDaysNames = weekDaysNames.slice(dayShift).concat(weekDaysNames.slice(0, dayShift));
+function isGTE(type, a, b) {
+  if (type === 'jalaali') {
+    return jalaali.isGTE(a, b);
   }
-  return weekDaysNames;
+  return gregorian.isGTE(a, b);
 }
 
-function page(xd, firstDayOfWeek) {
-  const days = month(xd);
-  let before = [], after = [];
-
-  const fdow = ((7 + firstDayOfWeek) % 7) || 7;
-  const ldow = (fdow + 6) % 7;
-
-  firstDayOfWeek = firstDayOfWeek || 0;
-
-  const from = days[0].clone();
-  if (from.getDay() !== fdow) {
-    from.addDays(-(from.getDay() + 7 - fdow) % 7);
+function isLTE(type, a, b) {
+  if (type === 'jalaali') {
+    return jalaali.isLTE(a, b);
   }
+  return gregorian.isLTE(a, b);
+}
 
-  const to = days[days.length - 1].clone();
-  const day = to.getDay();
-  if (day !== ldow) {
-    to.addDays((ldow + 7 - day) % 7);
+function fromTo(type, a, b) {
+  if (type === 'jalaali') {
+    return jalaali.fromTo(a, b);
   }
+  return gregorian.fromTo(a, b);
+}
 
-  if (isLTE(from, days[0])) {
-    before = fromTo(from, days[0]);
+function month(type, xd) {
+  if (type === 'jalaali') {
+    return jalaali.month(xd);
   }
+  return gregorian.month(xd);
+}
 
-  if (isGTE(to, days[days.length - 1])) {
-    after = fromTo(days[days.length - 1], to);
+function weekDayNames(type, firstDayOfWeek = 0) {
+  if (type === 'jalaali') {
+    return jalaali.weekDayNames(firstDayOfWeek);
   }
+  return gregorian.weekDayNames(firstDayOfWeek);
+}
 
-  return before.concat(days.slice(1, days.length - 1), after);
+function page(type, xd, firstDayOfWeek) {
+  if (type === 'jalaali') {
+    return jalaali.page(xd, firstDayOfWeek);
+  }
+  return gregorian.page(xd, firstDayOfWeek);
 }
 
 module.exports = {
+  gregorian,
+  jalaali,
   weekDayNames,
   sameMonth,
   sameDate,
