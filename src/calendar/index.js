@@ -160,7 +160,13 @@ class Calendar extends Component {
   }
 
   addMonth(count) {
-    this.updateMonth(this.state.currentMonth.clone().addMonths(count, true));
+    if(this.props.type === 'jalaali')
+    {
+      this.updateMonth(this.state.currentMonth.clone().add(count, 'jMonths'));
+    }
+    else{
+      this.updateMonth(this.state.currentMonth.clone().add(count, 'months'));
+    }
   }
 
   renderDay(day, id) {
