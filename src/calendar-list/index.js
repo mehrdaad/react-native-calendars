@@ -3,13 +3,13 @@ import {
   FlatList, Platform, Dimensions,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import XDate from 'xdate';
-
 import {xdateToData, parseDate} from '../interface';
 import styleConstructor from './style';
 import dateutils from '../dateutils';
 import Calendar from '../calendar';
 import CalendarListItem from './item';
+const Moment = require('moment');
+const jMoment = require('moment-jalaali');
 
 const {width} = Dimensions.get('window');
 
@@ -62,10 +62,26 @@ class CalendarList extends Component {
 
     const rows = [];
     const texts = [];
-    const date = parseDate(props.current) || XDate();
+    let date;
+    if(props.type === 'jalaali')
+    {
+      date = parseDate(props.type, props.current) || jMoment.utc();
+    }
+    else{
+      date = parseDate(props.type, props.current) || Moment.utc();
+    }
     for (let i = 0; i <= this.props.pastScrollRange + this.props.futureScrollRange; i++) {
-      const rangeDate = date.clone().addMonths(i - this.props.pastScrollRange, true);
-      const rangeDateStr = rangeDate.toString('MMM yyyy');
+      let rangeDate, rangeDateStr;
+      if(props.type === 'jalaali')
+        {
+        rangeDate = date.clone().add(i - this.props.pastScrollRange,  'jMonths' );
+        rangeDateStr = rangeDate.format('jMMMM jYYYY');
+      }
+      else{
+        rangeDate = date.clone().add(i - this.props.pastScrollRange,  'months' );
+        rangeDateStr = rangeDate.format('MMM YYYY');
+      }
+
       texts.push(rangeDateStr);
       /*
        * This selects range around current shown month [-0, +2] or [-1, +1] month for detail calendar rendering.
@@ -97,16 +113,16 @@ class CalendarList extends Component {
   }
 
   scrollToDay(d, offset, animated) {
-    const day = parseDate(d);
+    const day = parseDate(this.props.type, d);
     const diffMonths = Math.round(this.state.openDate.clone().setDate(1).diffMonths(day.clone().setDate(1)));
     const size = this.props.horizontal ? this.props.calendarWidth : this.props.calendarHeight;
     let scrollAmount = (size * this.props.pastScrollRange) + (diffMonths * size) + (offset || 0);
     if (!this.props.horizontal) {
       let week = 0;
-      const days = dateutils.page(day, this.props.firstDay);
+      const days = dateutils.page(this.props.type, day, this.props.firstDay);
       for (let i = 0; i < days.length; i++) {
         week = Math.floor(i / 7);
-        if (dateutils.sameDate(days[i], day)) {
+        if (dateutils.sameDate(this.props.type, days[i], day)) {
           scrollAmount += 46 * week;
           break;
         }
@@ -116,7 +132,7 @@ class CalendarList extends Component {
   }
 
   scrollToMonth(m) {
-    const month = parseDate(m);
+    const month = parseDate(this.props.type, m);
     const scrollTo = month || this.state.openDate;
     let diffMonths = Math.round(this.state.openDate.clone().setDate(1).diffMonths(scrollTo.clone().setDate(1)));
     const size = this.props.horizontal ? this.props.calendarWidth : this.props.calendarHeight;
@@ -127,8 +143,8 @@ class CalendarList extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const current = parseDate(this.props.current);
-    const nextCurrent = parseDate(props.current);
+    const current = parseDate(this.props.type, this.props.current);
+    const nextCurrent = parseDate(this.props.type, props.current);
     if (nextCurrent && current && nextCurrent.getTime() !== current.getTime()) {
       this.scrollToMonth(nextCurrent);
     }
@@ -171,7 +187,7 @@ class CalendarList extends Component {
       }
       newrows.push(val);
       if (rowIsCloseToViewable(i, 0)) {
-        visibleMonths.push(xdateToData(val));
+        visibleMonths.push(xdateToData(this.props.type, val));
       }
     }
     if (this.props.onVisibleMonthsChange) {
