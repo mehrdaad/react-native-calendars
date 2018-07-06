@@ -78,6 +78,19 @@ function diffMonths(type, date1, date2)
   }
   return gregorian.diffMonths(date1,date2);
 }
+function firstDayOfMonth(type, date)
+{
+  if (type === 'jalaali') {
+    return jalaali.firstDayOfMonth(date);
+  }
+  return gregorian.firstDayOfMonth(date);
+}
+function addMonths(type, date, month) {
+  if (type === 'jalaali') {
+    return jalaali.addMonths(date,month);
+  }
+  return gregorian.addMonths(date,month);
+}
 
 module.exports = {
   weekDayNames,
@@ -90,5 +103,7 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
-  diffMonths
+  diffMonths,
+  firstDayOfMonth,
+  addMonths
 };

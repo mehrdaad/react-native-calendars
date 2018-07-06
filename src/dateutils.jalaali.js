@@ -97,6 +97,14 @@ function formatMonthYear(date) {
 function diffMonths(date1, date2) {
   date1.diff(date2, 'jMonths');
 }
+function firstDayOfMonth(date)
+{
+  return date.clone().jDate(1);
+}
+function addMonths(date, month) {
+  return date.clone().add(month, 'jMonths');
+}
+
 
 module.exports = {
   weekDayNames,
@@ -110,5 +118,7 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
-  diffMonths
+  diffMonths,
+  firstDayOfMonth,
+  addMonths
 };

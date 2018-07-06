@@ -106,7 +106,9 @@ class CalendarList extends Component {
 
   scrollToDay(d, offset, animated) {
     const day = parseDate(this.props.type, d);
-    const diffMonths = Math.round(this.state.openDate.clone().setDate(1).diffMonths(day.clone().setDate(1)));
+    const firstDayOfOpenDateMonth = dateutils.firstDayOfMonth(this.props.type, this.state.openDate);
+    const firstDayOfDayMonth = dateutils.firstDayOfMonth(this.props.type, day);
+    const diffMonths = Math.round(dateutils.diffMonths(this.props.type, firstDayOfOpenDateMonth, firstDayOfDayMonth));
     const size = this.props.horizontal ? this.props.calendarWidth : this.props.calendarHeight;
     let scrollAmount = (size * this.props.pastScrollRange) + (diffMonths * size) + (offset || 0);
     if (!this.props.horizontal) {
@@ -126,7 +128,9 @@ class CalendarList extends Component {
   scrollToMonth(m) {
     const month = parseDate(this.props.type, m);
     const scrollTo = month || this.state.openDate;
-    let diffMonths = Math.round(this.state.openDate.clone().setDate(1).diffMonths(scrollTo.clone().setDate(1)));
+    const firstDayOfOpenDate = dateutils.firstDayOfMonth(this.props.type, this.state.openDate);
+    const firstDayOfScrollTo = dateutils.firstDayOfMonth(this.props.type, scrollTo);
+    let diffMonths = Math.round(dateutils.diffMonths(this.props.type, firstDayOfOpenDate, firstDayOfScrollTo));
     const size = this.props.horizontal ? this.props.calendarWidth : this.props.calendarHeight;
     const scrollAmount = (size * this.props.pastScrollRange) + (diffMonths * size);
         //console.log(month, this.state.openDate);
@@ -173,7 +177,8 @@ class CalendarList extends Component {
       let val = rowclone[i];
       const rowShouldBeRendered = rowIsCloseToViewable(i, 1);
       if (rowShouldBeRendered && !rowclone[i].getTime) {
-        val = this.state.openDate.clone().addMonths(i - this.props.pastScrollRange, true);
+        val = dateutils.addMonths(this.props.type, this.state.openDate, i - this.props.pastScrollRange);
+        dateutils.mont;
       } else if (!rowShouldBeRendered) {
         val = this.state.texts[i];
       }
@@ -204,8 +209,7 @@ class CalendarList extends Component {
   }
 
   getMonthIndex(month) {
-    let diffMonths = dateutils.diffMonths(this.props.type, this.state.openDate, month) + this.props.pastScrollRange;
-    return diffMonths;
+    return dateutils.diffMonths(this.props.type, this.state.openDate, month) + this.props.pastScrollRange;
   }
 
   render() {
