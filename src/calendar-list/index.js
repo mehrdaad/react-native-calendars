@@ -70,6 +70,16 @@ class CalendarList extends Component {
     else {
       date = parseDate(props.type, props.current) || Moment.utc();
     }
+    console.log('function result');
+    console.log(parseDate(props.type, props.current));
+    console.log(jMoment.utc());
+    console.log(Moment.utc());
+
+    console.log('props.current');
+    console.log(props.current);
+    console.log('parsed date:');
+    console.log(date);
+
     for (let i = 0; i <= this.props.pastScrollRange + this.props.futureScrollRange; i++) {
       const rangeDate = dateutils.rangeDate(date, i - this.props.pastScrollRange);
       const rangeDateStr = dateutils.formatMonthYear(rangeDate);
