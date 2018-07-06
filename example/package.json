@@ -9,7 +9,7 @@
 	"dependencies": {
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.54.2",
-		"react-native-calendars": "^1.17.5",
+		"react-native-calendars-jalaali": "^1.0.0",
 		"react-native-navigation": "^1.1.205"
 	},
 	"devDependencies": {

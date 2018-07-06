@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet
 } from 'react-native';
-import {Agenda} from 'react-native-calendars';
+import {Agenda} from 'react-native-calendars-jalaali';
 
 export default class AgendaScreen extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ export default class AgendaScreen extends Component {
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
+        type={'jalaali'}
         // markingType={'period'}
         // markedDates={{
         //    '2017-05-08': {textColor: '#666'},

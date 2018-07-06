@@ -1,11 +1,3 @@
-/**
- * Copyright 2016 Reza (github.com/rghorbani).
- *
- * @flow
- */
-
-'use strict';
-
 const gregorian = require('./interface.gregorian');
 const jalaali = require('./interface.jalaali');
 

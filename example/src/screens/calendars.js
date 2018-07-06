@@ -5,7 +5,7 @@ import {
   ScrollView,
   View
 } from 'react-native';
-import {Calendar} from 'react-native-calendars';
+import {Calendar} from 'react-native-calendars-jalaali';
 
 export default class CalendarsScreen extends Component {
   constructor(props) {

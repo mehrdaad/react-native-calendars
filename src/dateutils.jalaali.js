@@ -1,11 +1,3 @@
-/**
- * Copyright 2016 Reza (github.com/rghorbani).
- *
- * @flow
- */
-
-'use strict';
-
 const Moment = require('moment');
 const jMoment = require('moment-jalaali');
 
