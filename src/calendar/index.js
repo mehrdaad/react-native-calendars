@@ -86,10 +86,10 @@ class Calendar extends Component {
   };
   constructor(props) {
     super(props);
-    this.style = styleConstructor(this.props.theme);
+    this.style = styleConstructor(props.theme);
     let currentMonth;
     if (props.current) {
-      currentMonth = parseDate(props.current);
+      currentMonth = parseDate(props.type, props.current);
     } else {
       if (props.type === 'jalaali') {
         currentMonth = jMoment.utc();
@@ -109,8 +109,8 @@ class Calendar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const current= parseDate(this.props.type, nextProps.current);
-    if (current && current.toString('yyyy MM') !== this.state.currentMonth.toString('yyyy MM')) {
+    const current= parseDate(nextProps.type, nextProps.current);
+    if (current && current.format('YYYY MM') !== this.state.currentMonth.format('YYYY MM')) {
       this.setState({
         currentMonth: current.clone()
       });
@@ -118,7 +118,7 @@ class Calendar extends Component {
   }
 
   updateMonth(day, doNotTriggerListeners) {
-    if (day.toString('yyyy MM') === this.state.currentMonth.toString('yyyy MM')) {
+    if (day.format('YYYY MM') === this.state.currentMonth.format('YYYY MM')) {
       return;
     }
     this.setState({
@@ -194,7 +194,7 @@ class Calendar extends Component {
           type={this.props.type}
           onPress={this.pressDay}
           onLongPress={this.longPressDay}
-          date={xdateToData(day)}
+          date={xdateToData(this.props.type, day)}
           marking={this.getDateMarking(day)}
         >
           {date}
