@@ -34,6 +34,9 @@ class CalendarHeader extends Component {
   }
 
   setDefaultMonthFormat(format) {
+    console.log('month format');
+    console.log(format);
+
     let monthFormat;
     if (format) {
       monthFormat = format;
@@ -95,6 +98,9 @@ class CalendarHeader extends Component {
   }
 
   render() {
+    console.log('render');
+    console.log(this.state.monthFormat);
+
     let leftArrow = <View/>;
     let rightArrow = <View/>;
     let weekDaysNames = weekDayNames(this.props.type, this.props.firstDay);
