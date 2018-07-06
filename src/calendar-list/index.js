@@ -73,7 +73,12 @@ class CalendarList extends Component {
     for (let i = 0; i <= this.props.pastScrollRange + this.props.futureScrollRange; i++) {
       const rangeDate = dateutils.rangeDate(this.props.type, date, i - this.props.pastScrollRange);
       const rangeDateStr = dateutils.formatMonthYear(this.props.type, rangeDate);
-
+      console.log('rangeDateStr');
+      console.log(rangeDateStr);
+      console.log('rangeDate');
+      console.log(rangeDate);
+      
+      
       texts.push(rangeDateStr);
             /*
              * This selects range around current shown month [-0, +2] or [-1, +1] month for detail calendar rendering.
