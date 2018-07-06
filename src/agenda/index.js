@@ -119,8 +119,8 @@ export default class AgendaView extends Component {
       calendarIsReady: false,
       calendarScrollable: false,
       firstResevationLoad: false,
-      selectedDay: parseDate(this.props.calendarType, this.props.selected) || selectedDay,
-      topDay: parseDate(this.props.calendarType, this.props.selected) || topDay,
+      selectedDay: parseDate(this.props.type, this.props.selected) || selectedDay,
+      topDay: parseDate(this.props.type, this.props.selected) || topDay,
     };
     this.currentMonth = this.state.selectedDay.clone();
     this.onLayout = this.onLayout.bind(this);
@@ -216,7 +216,7 @@ export default class AgendaView extends Component {
         firstResevationLoad: true
       }, () => {
         if (this.props.loadItemsForMonth) {
-          this.props.loadItemsForMonth(xdateToData(this.state.selectedDay));
+          this.props.loadItemsForMonth(xdateToData(props.type, this.state.selectedDay));
         }
       });
     }
@@ -264,7 +264,7 @@ export default class AgendaView extends Component {
   }
 
   chooseDay(d, optimisticScroll) {
-    const day = parseDate(d);
+    const day = parseDate(this.props.type, d);
     this.setState({
       calendarScrollable: false,
       selectedDay: day.clone()
@@ -280,10 +280,10 @@ export default class AgendaView extends Component {
     this.setScrollPadPosition(this.initialScrollPadPosition(), true);
     this.calendar.scrollToDay(day, this.calendarOffset(), true);
     if (this.props.loadItemsForMonth) {
-      this.props.loadItemsForMonth(xdateToData(day));
+      this.props.loadItemsForMonth(xdateToData(this.props.type, day));
     }
     if (this.props.onDayPress) {
-      this.props.onDayPress(xdateToData(day));
+      this.props.onDayPress(xdateToData(this.props.type, day));
     }
   }
 
@@ -311,15 +311,15 @@ export default class AgendaView extends Component {
   }
 
   onDayChange(day) {
-    const newDate = parseDate(day);
+    const newDate = parseDate(this.props.type, day);
     const withAnimation = dateutils.sameMonth(this.props.type, newDate, this.state.selectedDay);
     this.calendar.scrollToDay(day, this.calendarOffset(), withAnimation);
     this.setState({
-      selectedDay: parseDate(day)
+      selectedDay: parseDate(this.props.type, day)
     });
 
     if (this.props.onDayChange) {
-      this.props.onDayChange(xdateToData(newDate));
+      this.props.onDayChange(xdateToData(this.props.type, newDate));
     }
   }
 
