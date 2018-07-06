@@ -17,12 +17,16 @@ class CalendarListItem extends Component {
   shouldComponentUpdate(nextProps) {
     const r1 = this.props.item;
     const r2 = nextProps.item;
-    return r1.toString('yyyy MM') !== r2.toString('yyyy MM') || !!(r2.propbump && r2.propbump !== r1.propbump);
+    // return r1.toString('yyyy MM') !== r2.toString('yyyy MM') || !!(r2.propbump && r2.propbump !== r1.propbump);
+    return (typeof r1 !== typeof r2 && typeof r1 === 'string' && r1.toString() !== r2.format('YYYY MM'))
+          || (typeof r1 !== typeof r2 && typeof r2 === 'string' && r2.toString() !== r1.format('YYYY MM'))
+          || !!(r2.propbump && r2.propbump !== r1.propbump);
   }
 
   render() {
     const row = this.props.item;
-    if (row.getTime) {
+    console.log('rener row component',row);
+    if (row.format) {
       return (
         <Calendar
           type={this.props.type}

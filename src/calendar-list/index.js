@@ -199,6 +199,8 @@ class CalendarList extends Component {
   }
 
   renderCalendar({item}) {
+    console.log('rendering item');
+    console.log(item);
     return (<CalendarListItem item={item} calendarHeight={this.props.calendarHeight}
                                   calendarWidth={this.props.horizontal ? this.props.calendarWidth : undefined} {...this.props} />);
   }
@@ -216,8 +218,6 @@ class CalendarList extends Component {
   }
 
   render() {
-    console.log('rows');
-    console.log(this.state.rows);
     return (
             <FlatList
                 onLayout={this.onLayout}
