@@ -94,6 +94,10 @@ function formatMonthYear(date) {
   return date.format('jMMMM jYYYY');
 }
 
+function diffMonths(date1, date2) {
+  date1.diff(date2, 'jMonths');
+}
+
 module.exports = {
   weekDayNames,
   dayOfWeek,
@@ -106,4 +110,5 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
+  diffMonths
 };

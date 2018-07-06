@@ -71,6 +71,13 @@ function formatMonthYear(type, date) {
   }
   return gregorian.formatMonthYear(date);
 }
+function diffMonths(type, date1, date2)
+{
+  if (type === 'jalaali') {
+    return jalaali.diffMonths(date1,date2);
+  }
+  return gregorian.diffMonths(date1,date2);
+}
 
 module.exports = {
   weekDayNames,
@@ -83,4 +90,5 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
+  diffMonths
 };
