@@ -306,6 +306,7 @@ export default class AgendaView extends Component {
                 }}
                 ref={(c) => this.list = c}
                 theme={this.props.theme}
+                type={this.props.type}
             />
     );
   }
@@ -412,6 +413,7 @@ export default class AgendaView extends Component {
                             onLayout={() => {
                               this.calendar.scrollToDay(this.state.selectedDay.clone(), this.calendarOffset(), false);
                             }}
+                            type={this.props.type}
                             theme={this.props.theme}
                             onVisibleMonthsChange={this.onVisibleMonthsChange.bind(this)}
                             ref={(c) => this.calendar = c}

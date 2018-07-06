@@ -190,8 +190,8 @@ class Calendar extends Component {
         <DayComp
           key={id}
           state={state}
-          theme={this.props.theme}
           type={this.props.type}
+          theme={this.props.theme}
           onPress={this.pressDay}
           onLongPress={this.longPressDay}
           date={xdateToData(this.props.type, day)}
@@ -227,7 +227,7 @@ class Calendar extends Component {
     if (!this.props.markedDates) {
       return false;
     }
-    const dates = this.props.markedDates[day.toString('yyyy-MM-dd')] || EmptyArray;
+    const dates = this.props.markedDates[day.format('YYYY-MM-DD')] || EmptyArray;
     if (dates.length || dates) {
       return dates;
     } else {
@@ -262,7 +262,7 @@ class Calendar extends Component {
     let indicator;
     const current = parseDate(this.props.type, this.props.current);
     if (current) {
-      const lastMonthOfDay = current.clone().addMonths(1, true).setDate(1).addDays(-1).toString('yyyy-MM-dd');
+      const lastMonthOfDay = current.clone().addMonths(1, true).setDate(1).addDays(-1).format('YYYY-MM-DD');
       if (this.props.displayLoadingIndicator &&
           !(this.props.markedDates && this.props.markedDates[lastMonthOfDay])) {
         indicator = true;
@@ -271,7 +271,7 @@ class Calendar extends Component {
     return (
       <View style={[this.style.container, this.props.style]}>
         <CalendarHeader
-            type={this.props.type}
+          type={this.props.type}
           theme={this.props.theme}
           hideArrows={this.props.hideArrows}
           month={this.state.currentMonth}
