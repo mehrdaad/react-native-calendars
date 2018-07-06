@@ -91,7 +91,12 @@ function addMonths(type, date, month) {
   }
   return gregorian.addMonths(date,month);
 }
+/*
+TODO: add
+function utc(type)
+{
 
+}*/
 module.exports = {
   weekDayNames,
   sameMonth,

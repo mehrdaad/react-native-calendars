@@ -161,12 +161,7 @@ class Calendar extends Component {
   }
 
   addMonth(count) {
-    if (this.props.type === 'jalaali') {
-      this.updateMonth(this.state.currentMonth.clone().add(count, 'jMonths'));
-    }
-    else {
-      this.updateMonth(this.state.currentMonth.clone().add(count, 'months'));
-    }
+    this.updateMonth(dateutils.addMonths(this.state.currentMonth, count));
   }
 
   renderDay(day, id) {
@@ -269,7 +264,7 @@ class Calendar extends Component {
     let indicator;
     const current = parseDate(this.props.type, this.props.current);
     if (current) {
-      const lastMonthOfDay = current.clone().addMonths(1, true).setDate(1).addDays(-1).format('YYYY-MM-DD');
+      const lastMonthOfDay = current.clone().add(1, 'months').date(1).add(-1,'days').format('YYYY-MM-DD');
       if (this.props.displayLoadingIndicator &&
                 !(this.props.markedDates && this.props.markedDates[lastMonthOfDay])) {
         indicator = true;
