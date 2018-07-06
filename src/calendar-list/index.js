@@ -72,7 +72,7 @@ class CalendarList extends Component {
     }
     for (let i = 0; i <= this.props.pastScrollRange + this.props.futureScrollRange; i++) {
       const rangeDate = dateutils.rangeDate(this.props.type, date, i - this.props.pastScrollRange);
-      const rangeDateStr = dateutils.formatMonthYear(rangeDate);
+      const rangeDateStr = dateutils.formatMonthYear(this.props.type, rangeDate);
 
       texts.push(rangeDateStr);
             /*
