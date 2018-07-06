@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import XDate from 'xdate';
+// import XDate from 'xdate';
 import PropTypes from 'prop-types';
 import styleConstructor from './style';
 import { weekDayNames } from '../../dateutils';
+const Moment = require('moment');
 
 class CalendarHeader extends Component {
   static propTypes = {
     theme: PropTypes.object,
     hideArrows: PropTypes.bool,
-    month: PropTypes.instanceOf(XDate),
+    month: PropTypes.instanceOf(Moment),
     addMonth: PropTypes.func,
     showIndicator: PropTypes.bool,
     firstDay: PropTypes.number,
@@ -22,7 +23,7 @@ class CalendarHeader extends Component {
   };
 
   static defaultProps = {
-    monthFormat: 'MMMM yyyy',
+    monthFormat: 'MMMM YYYY',
   };
 
   constructor(props) {
@@ -44,8 +45,8 @@ class CalendarHeader extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (
-      nextProps.month.toString('yyyy MM') !==
-      this.props.month.toString('yyyy MM')
+        nextProps.month.format('YYYY MM') !==
+        this.props.month.format('YYYY MM')
     ) {
       return true;
     }
@@ -77,7 +78,7 @@ class CalendarHeader extends Component {
   render() {
     let leftArrow = <View />;
     let rightArrow = <View />;
-    let weekDaysNames = weekDayNames(this.props.firstDay);
+    let weekDaysNames = weekDayNames(this.props.type, this.props.firstDay);
     if (!this.props.hideArrows) {
       leftArrow = (
         <TouchableOpacity
@@ -118,7 +119,7 @@ class CalendarHeader extends Component {
           {leftArrow}
           <View style={{ flexDirection: 'row' }}>
             <Text allowFontScaling={false} style={this.style.monthText} accessibilityTraits='header'>
-              {this.props.month.toString(this.props.monthFormat)}
+              {this.props.month.format(this.props.monthFormat)}
             </Text>
             {indicator}
           </View>
