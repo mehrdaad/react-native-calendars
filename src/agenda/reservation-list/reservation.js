@@ -34,7 +34,7 @@ class ReservationListItem extends Component {
 
   renderDate(date, item) {
     if (this.props.renderDay) {
-      return this.props.renderDay(date ? xdateToData(date) : undefined, item);
+      return this.props.renderDay(date ? xdateToData(this.props.type, date) : undefined, item);
     }
     let todayDate;
     if(this.props.type === 'jalaali') {
