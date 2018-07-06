@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {xdateToData} from '../../interface';
-import XDate from 'xdate';
 import dateutils from '../../dateutils';
 import styleConstructor from './style';
+const Moment = require('moment');
+const jMoment = require('moment-jalaali');
 
 class ReservationListItem extends Component {
   constructor(props) {
@@ -35,12 +36,19 @@ class ReservationListItem extends Component {
     if (this.props.renderDay) {
       return this.props.renderDay(date ? xdateToData(date) : undefined, item);
     }
-    const today = dateutils.sameDate(date, XDate()) ? this.styles.today : undefined;
+    let todayDate;
+    if(this.props.type === 'jalaali') {
+      todayDate = jMoment.utc();
+    }
+    else {
+      todayDate = Moment.utc();
+    }
+    const today = dateutils.sameDate(this.props.type, date, todayDate) ? this.styles.today : undefined;
     if (date) {
       return (
         <View style={this.styles.day}>
           <Text allowFontScaling={false} style={[this.styles.dayNum, today]}>{date.getDate()}</Text>
-          <Text allowFontScaling={false} style={[this.styles.dayText, today]}>{XDate.locales[XDate.defaultLocale].dayNamesShort[date.getDay()]}</Text>
+          <Text allowFontScaling={false} style={[this.styles.dayText, today]}>{dateutils.weekDayNames(this.props.type)[date.day()]}</Text>
         </View>
       );
     } else {

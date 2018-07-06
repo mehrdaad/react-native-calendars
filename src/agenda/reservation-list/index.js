@@ -6,10 +6,9 @@ import {
 } from 'react-native';
 import Reservation from './reservation';
 import PropTypes from 'prop-types';
-import XDate from 'xdate';
-
 import dateutils from '../../dateutils';
 import styleConstructor from './style';
+const Moment = require('moment');
 
 class ReactComp extends Component {
   static propTypes = {
@@ -30,8 +29,8 @@ class ReactComp extends Component {
     // considered that the date in question is not yet loaded
     reservations: PropTypes.object,
 
-    selectedDay: PropTypes.instanceOf(XDate),
-    topDay: PropTypes.instanceOf(XDate),
+    selectedDay: PropTypes.instanceOf(Moment),
+    topDay: PropTypes.instanceOf(Moment),
     refreshControl: PropTypes.element,
     refreshing: PropTypes.bool,
     onRefresh: PropTypes.func,
