@@ -30,14 +30,11 @@ class CalendarHeader extends Component {
     this.substractMonth = this.substractMonth.bind(this);
     this.onPressLeft = this.onPressLeft.bind(this);
     this.onPressRight = this.onPressRight.bind(this);
-    this.setDefaultMonthFormat = this.setDefaultMonthFormat.bind(this);
-    this.setDefaultMonthFormat(props.monthFormat);
+    this.getDefaultFormat = this.getDefaultFormat.bind(this);
+    this.state.monthFormat = this.getDefaultFormat(props.monthFormat);
   }
 
-  setDefaultMonthFormat(format) {
-    console.log('month format');
-    console.log(format);
-
+  getDefaultFormat(format) {
     let monthFormat;
     if (format) {
       monthFormat = format;
@@ -48,11 +45,7 @@ class CalendarHeader extends Component {
     else {
       monthFormat = 'MMMM YYYY';
     }
-    console.log('final format');
-    console.log(this.state);
-    console.log(monthFormat);
-    this.state.monthFormat = monthFormat;
-    // this.setState({monthFormat});
+    return monthFormat;
   }
 
   addMonth() {
@@ -83,7 +76,7 @@ class CalendarHeader extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.state.monthFormat !== nextProps.monthFormat)
-      this.setDefaultMonthFormat(nextProps.monthFormat);
+      this.setState({monthFormat: this.getDefaultFormat(nextProps.monthFormat)});
   }
 
   onPressLeft() {
@@ -103,9 +96,6 @@ class CalendarHeader extends Component {
   }
 
   render() {
-    console.log('render');
-    console.log(this.state.monthFormat);
-
     let leftArrow = <View/>;
     let rightArrow = <View/>;
     let weekDaysNames = weekDayNames(this.props.type, this.props.firstDay);
