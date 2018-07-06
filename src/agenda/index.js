@@ -90,8 +90,8 @@ export default class AgendaView extends Component {
     refreshing: PropTypes.bool,
         // Display loading indicador. Default = false
     displayLoadingIndicator: PropTypes.bool,
-        //The calendar type. Accepted values are jalaali & gregorian.
-    calendarType: PropTypes.string
+        //calendar type.
+    calendarType: PropTypes.oneOf(['gregorian','jalaali'])
   };
   static defaultProps = {
     calendarType: 'gregorian',
