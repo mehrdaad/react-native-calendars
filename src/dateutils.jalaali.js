@@ -1,5 +1,6 @@
 const Moment = require('moment');
 const jMoment = require('moment-jalaali');
+Moment.locale('fa');
 
 function sameMonth(a, b) {
   return a instanceof Moment && b instanceof Moment &&
