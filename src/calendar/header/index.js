@@ -47,7 +47,11 @@ class CalendarHeader extends Component {
     else {
       monthFormat = 'MMMM YYYY';
     }
-    this.setState({monthFormat});
+    console.log('final format');
+    console.log(this.state);
+    console.log(monthFormat);
+    this.state.monthFormat = monthFormat;
+    // this.setState({monthFormat});
   }
 
   addMonth() {
