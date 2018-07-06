@@ -58,6 +58,27 @@ function page(type, xd, firstDayOfWeek) {
   return gregorian.page(xd, firstDayOfWeek);
 }
 
+function rangeDate(type, date, range) {
+  if (type === 'jalaali') {
+    return jalaali.rangeDate(date, range);
+  }
+  return gregorian.rangeDate(date, range);
+}
+
+function formatMonthYear(type, date) {
+  if (type === 'jalaali') {
+    return jalaali.formatMonthYear(date);
+  }
+  return gregorian.formatMonthYear(date);
+}
+
+function formatWith(type, date, format) {
+  if (type === 'jalaali') {
+    return jalaali.formatWith(date, format);
+  }
+  return gregorian.formatMonthYear(date, format);
+}
+
 module.exports = {
   weekDayNames,
   sameMonth,
@@ -66,5 +87,8 @@ module.exports = {
   page,
   fromTo,
   isLTE,
-  isGTE
+  isGTE,
+  rangeDate,
+  formatMonthYear,
+  formatWith
 };

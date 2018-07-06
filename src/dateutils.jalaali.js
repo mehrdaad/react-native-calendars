@@ -86,6 +86,18 @@ function page(xd, firstDayOfWeek) {
   return before.concat(days.slice(1, days.length - 1), after);
 }
 
+function rangeDate(date, range) {
+  return date.clone().add(range, 'jMonths');
+}
+
+function formatMonthYear(date) {
+  return date.format('jMMMM jYYYY');
+}
+
+function formatWith(date, format) {
+  return date.format(format);
+}
+
 module.exports = {
   weekDayNames,
   dayOfWeek,
@@ -95,5 +107,8 @@ module.exports = {
   page,
   fromTo,
   isLTE,
-  isGTE
+  isGTE,
+  rangeDate,
+  formatMonthYear,
+  formatWith
 };

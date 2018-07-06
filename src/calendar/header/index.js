@@ -3,7 +3,7 @@ import { ActivityIndicator } from 'react-native';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import styleConstructor from './style';
-import { weekDayNames } from '../../dateutils';
+import { weekDayNames, formatMonthYear, formatWith } from '../../dateutils';
 const Moment = require('moment');
 
 class CalendarHeader extends Component {
@@ -21,10 +21,6 @@ class CalendarHeader extends Component {
     onPressArrowRight: PropTypes.func
   };
 
-  static defaultProps = {
-    monthFormat: 'MMMM YYYY',
-  };
-
   constructor(props) {
     super(props);
     this.style = styleConstructor(props.theme);
@@ -32,6 +28,24 @@ class CalendarHeader extends Component {
     this.substractMonth = this.substractMonth.bind(this);
     this.onPressLeft = this.onPressLeft.bind(this);
     this.onPressRight = this.onPressRight.bind(this);
+    this.setDefaultMonthFormat = this.setDefaultMonthFormat.bind(this);
+    this.setDefaultMonthFormat(this.props.monthFormat)
+  }
+
+  setDefaultMonthFormat(format){
+    let monthFormat;
+    if(format)
+    {
+      monthFormat = format;
+    }
+    if(this.props.type === 'jalaali')
+    {
+      monthFormat  ='jMMMM jYYYY';
+    }
+    else{
+      monthFormat = 'MMMM YYYY';
+    }
+    this.setState({monthFormat});
   }
 
   addMonth() {
@@ -44,8 +58,7 @@ class CalendarHeader extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (
-        nextProps.month.format('YYYY MM') !==
-        this.props.month.format('YYYY MM')
+        formatMonthYear(nextProps.type, nextProps.month) !== formatMonthYear(this.props.type, this.props.month)
     ) {
       return true;
     }
@@ -55,7 +68,15 @@ class CalendarHeader extends Component {
     if (nextProps.hideDayNames !== this.props.hideDayNames) {
       return true;
     }
+    if( nextProps.monthFormat !== this.props.monthFormat) {
+      return true;
+    }
     return false;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.state.monthFormat !== nextProps.monthFormat)
+      this.setDefaultMonthFormat(nextProps.monthFormat);
   }
 
   onPressLeft() {
@@ -118,7 +139,7 @@ class CalendarHeader extends Component {
           {leftArrow}
           <View style={{ flexDirection: 'row' }}>
             <Text allowFontScaling={false} style={this.style.monthText} accessibilityTraits='header'>
-              {this.props.month.format(this.props.monthFormat)}
+                {formatWith(this.props.type, this.props.month, this.state.monthFormat)}
             </Text>
             {indicator}
           </View>
