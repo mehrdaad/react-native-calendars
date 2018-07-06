@@ -24,6 +24,7 @@ class CalendarHeader extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {};
     this.style = styleConstructor(props.theme);
     this.addMonth = this.addMonth.bind(this);
     this.substractMonth = this.substractMonth.bind(this);
