@@ -88,6 +88,10 @@ function formatMonthYear(date) {
   return date.format('MMMM YYYY');
 }
 
+function monthYearFormat() {
+  return 'MMMM YYYY';
+}
+
 function diffMonths(date1, date2) {
   date1.diff(date2, 'jMonths');
 }
@@ -111,6 +115,7 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
+  monthYearFormat,
   diffMonths,
   firstDayOfMonth,
   addMonths

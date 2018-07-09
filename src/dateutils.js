@@ -2,6 +2,7 @@ const gregorian = require('./dateutils.gregorian');
 const jalaali = require('./dateutils.jalaali');
 const Moment = require('moment');
 
+
 function sameMonth(type, a, b) {
   if (type === 'jalaali') {
     return jalaali.sameMonth(a, b);
@@ -71,32 +72,35 @@ function formatMonthYear(type, date) {
   }
   return gregorian.formatMonthYear(date);
 }
-function diffMonths(type, date1, date2)
-{
+
+function monthYearFormat(type) {
   if (type === 'jalaali') {
-    return jalaali.diffMonths(date1,date2);
+    return jalaali.monthYearFormat();
   }
-  return gregorian.diffMonths(date1,date2);
+  return gregorian.monthYearFormat();
 }
-function firstDayOfMonth(type, date)
-{
+
+function diffMonths(type, date1, date2) {
+  if (type === 'jalaali') {
+    return jalaali.diffMonths(date1, date2);
+  }
+  return gregorian.diffMonths(date1, date2);
+}
+
+function firstDayOfMonth(type, date) {
   if (type === 'jalaali') {
     return jalaali.firstDayOfMonth(date);
   }
   return gregorian.firstDayOfMonth(date);
 }
+
 function addMonths(type, date, month) {
   if (type === 'jalaali') {
-    return jalaali.addMonths(date,month);
+    return jalaali.addMonths(date, month);
   }
-  return gregorian.addMonths(date,month);
+  return gregorian.addMonths(date, month);
 }
-/*
-TODO: add
-function utc(type)
-{
 
-}*/
 module.exports = {
   weekDayNames,
   sameMonth,
@@ -108,6 +112,7 @@ module.exports = {
   isGTE,
   rangeDate,
   formatMonthYear,
+  monthYearFormat,
   diffMonths,
   firstDayOfMonth,
   addMonths

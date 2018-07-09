@@ -3,7 +3,7 @@ import {ActivityIndicator} from 'react-native';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import styleConstructor from './style';
-import {weekDayNames, formatMonthYear} from '../../dateutils';
+import {weekDayNames, formatMonthYear, monthYearFormat} from '../../dateutils';
 
 const Moment = require('moment');
 
@@ -39,11 +39,8 @@ class CalendarHeader extends Component {
     if (format) {
       monthFormat = format;
     }
-    if (this.props.type === 'jalaali') {
-      monthFormat = 'jMMMM jYYYY';
-    }
-    else {
-      monthFormat = 'MMMM YYYY';
+    else{
+      monthFormat =  monthYearFormat(this.props.type);
     }
     return monthFormat;
   }
