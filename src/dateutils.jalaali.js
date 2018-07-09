@@ -1,8 +1,10 @@
 const Moment = require('moment');
-const jMoment = require('moment-jalaali');
+const jMoment = require('moment-jalaali-react-native-calendar');
+
 jMoment.loadPersian({
   dialect: 'persian-modern'
 });
+
 function sameMonth(a, b) {
   return a instanceof Moment && b instanceof Moment &&
         a.jYear() === b.jYear() &&
@@ -104,8 +106,7 @@ function diffMonths(date1, date2) {
   date1.diff(date2, 'jMonths');
 }
 
-function firstDayOfMonth(date)
-{
+function firstDayOfMonth(date) {
   return date.clone().jDate(1);
 }
 
@@ -113,6 +114,9 @@ function addMonths(date, month) {
   return date.clone().add(month, 'jMonths');
 }
 
+function utc() {
+  return jMoment().utc();
+}
 
 module.exports = {
   weekDayNames,
@@ -129,5 +133,6 @@ module.exports = {
   monthYearFormat,
   diffMonths,
   firstDayOfMonth,
-  addMonths
+  addMonths,
+  utc
 };

@@ -3,8 +3,6 @@ import {View, Text} from 'react-native';
 import {xdateToData} from '../../interface';
 import dateutils from '../../dateutils';
 import styleConstructor from './style';
-const Moment = require('moment');
-const jMoment = require('moment-jalaali');
 
 class ReservationListItem extends Component {
   constructor(props) {
@@ -36,13 +34,7 @@ class ReservationListItem extends Component {
     if (this.props.renderDay) {
       return this.props.renderDay(date ? xdateToData(this.props.type, date) : undefined, item);
     }
-    let todayDate;
-    if(this.props.type === 'jalaali') {
-      todayDate = jMoment.utc();
-    }
-    else {
-      todayDate = Moment.utc();
-    }
+    const todayDate = dateutils.utc(this.props.type);
     const today = dateutils.sameDate(this.props.type, date, todayDate) ? this.styles.today : undefined;
     if (date) {
       return (

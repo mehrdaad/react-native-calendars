@@ -16,9 +16,6 @@ import SingleDay from './day/custom';
 import CalendarHeader from './header';
 import shouldComponentUpdate from './updater';
 
-const Moment = require('moment');
-const jMoment = require('moment-jalaali');
-
 //Fallback when RN version is < 0.44
 const viewPropTypes = ViewPropTypes || View.propTypes;
 
@@ -92,11 +89,7 @@ class Calendar extends Component {
     if (props.current) {
       currentMonth = parseDate(props.type, props.current);
     } else {
-      if (props.type === 'jalaali') {
-        currentMonth = jMoment.utc();
-      } else {
-        currentMonth = Moment.utc();
-      }
+      currentMonth = dateutils.utc(props.type);
     }
     this.state = {
       currentMonth
@@ -174,7 +167,7 @@ class Calendar extends Component {
       state = 'disabled';
     } else if (!dateutils.sameMonth(this.props.type, day, this.state.currentMonth)) {
       state = 'disabled';
-    } else if (dateutils.sameDate(this.props.type, day, Moment().utc())) {
+    } else if (dateutils.sameDate(this.props.type, day, dateutils.utc(this.props.type))) {
       state = 'today';
     }
     let dayComp;

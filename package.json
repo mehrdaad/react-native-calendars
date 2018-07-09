@@ -20,7 +20,7 @@
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
     "moment": "^2.22.2",
-    "moment-jalaali": "^0.7.4",
+    "moment-jalaali-react-native-calendar": "^1.0.3",
     "prop-types": "^15.5.10",
     "xdate": "^0.8.0"
   },

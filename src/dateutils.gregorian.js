@@ -104,6 +104,10 @@ function addMonths(date, month) {
   return date.clone().add(month, 'months');
 }
 
+function utc() {
+  return Moment().utc();
+}
+
 module.exports = {
   weekDayNames,
   sameMonth,
@@ -118,5 +122,6 @@ module.exports = {
   monthYearFormat,
   diffMonths,
   firstDayOfMonth,
-  addMonths
+  addMonths,
+  utc
 };

@@ -101,6 +101,13 @@ function addMonths(type, date, month) {
   return gregorian.addMonths(date, month);
 }
 
+function utc(type) {
+  if (type === 'jalaali') {
+    return jalaali.utc();
+  }
+  return gregorian.utc();
+}
+
 module.exports = {
   weekDayNames,
   sameMonth,
@@ -115,5 +122,6 @@ module.exports = {
   monthYearFormat,
   diffMonths,
   firstDayOfMonth,
-  addMonths
+  addMonths,
+  utc
 };

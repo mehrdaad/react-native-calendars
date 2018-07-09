@@ -1,5 +1,5 @@
 const Moment = require('moment');
-const jMoment = require('moment-jalaali');
+const jMoment = require('moment-jalaali-react-native-calendar');
 
 function padNumber(n) {
   if (n < 10) {

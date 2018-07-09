@@ -14,8 +14,6 @@ import ReservationsList from './reservation-list';
 import styleConstructor from './style';
 import {VelocityTracker} from '../input';
 
-const Moment = require('moment');
-const jMoment = require('moment-jalaali');
 
 const HEADER_HEIGHT = 104;
 const KNOB_HEIGHT = 24;
@@ -105,15 +103,8 @@ export default class AgendaView extends Component {
     this.viewWidth = windowSize.width;
     this.scrollTimeout = undefined;
     this.headerState = 'idle';
-    let selectedDay, topDay;
-    if (this.props.type === 'jalaali') {
-      selectedDay = jMoment.utc();
-      topDay = jMoment.utc();
-    }
-    else {
-      selectedDay = Moment.utc();
-      topDay = Moment.utc();
-    }
+    const selectedDay = dateutils.utc(props.type);
+    const topDay = dateutils.utc(props.type)''
     this.state = {
       scrollY: new Animated.Value(0),
       calendarIsReady: false,

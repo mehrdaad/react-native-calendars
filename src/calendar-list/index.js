@@ -3,14 +3,11 @@ import {
     FlatList, Platform, Dimensions,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {xdateToData, parseDate} from '../interface';
+import {xdateToData, parseDate } from '../interface';
 import styleConstructor from './style';
 import dateutils from '../dateutils';
 import Calendar from '../calendar';
 import CalendarListItem from './item';
-
-const Moment = require('moment');
-const jMoment = require('moment-jalaali');
 
 const {width} = Dimensions.get('window');
 
@@ -63,13 +60,7 @@ class CalendarList extends Component {
 
     const rows = [];
     const texts = [];
-    let date;
-    if (props.type === 'jalaali') {
-      date = parseDate(props.type, props.current) || jMoment.utc();
-    }
-    else {
-      date = parseDate(props.type, props.current) || Moment.utc();
-    }
+    const date = parseDate(props.type, props.current) || dateutils.utc(props.type);
     for (let i = 0; i <= this.props.pastScrollRange + this.props.futureScrollRange; i++) {
       const rangeDate = dateutils.rangeDate(this.props.type, date, i - this.props.pastScrollRange);
       const rangeDateStr = dateutils.formatMonthYear(this.props.type, rangeDate);
