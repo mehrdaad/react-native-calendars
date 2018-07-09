@@ -1,6 +1,8 @@
 const Moment = require('moment');
 const jMoment = require('moment-jalaali');
-
+jMoment.loadPersian({
+  dialect: 'persian-modern'
+});
 function sameMonth(a, b) {
   return a instanceof Moment && b instanceof Moment &&
         a.jYear() === b.jYear() &&
