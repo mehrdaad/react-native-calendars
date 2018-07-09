@@ -1,10 +1,6 @@
 const Moment = require('moment');
 const jMoment = require('moment-jalaali-react-native-calendar');
 
-jMoment.loadPersian({
-  dialect: 'persian-modern'
-});
-
 function sameMonth(a, b) {
   return a instanceof Moment && b instanceof Moment &&
         a.jYear() === b.jYear() &&
