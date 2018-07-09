@@ -119,9 +119,6 @@ class Calendar extends Component {
   }
 
   updateMonth(day, doNotTriggerListeners) {
-    console.log('is same month');
-    console.log(day.format('YYYY MM') === this.state.currentMonth.format('YYYY MM'));
-
     if (day.format('YYYY MM') === this.state.currentMonth.format('YYYY MM')) {
       return;
     }
@@ -164,11 +161,7 @@ class Calendar extends Component {
   }
 
   addMonth(count) {
-    console.log('adding month');
-    console.log(count);
-    console.log(this.state.currentMonth);
-
-    this.updateMonth(dateutils.addMonths(this.state.currentMonth, count));
+    this.updateMonth(dateutils.addMonths(this.props.type, this.state.currentMonth, count));
   }
 
   renderDay(day, id) {
@@ -182,10 +175,6 @@ class Calendar extends Component {
     } else if (!dateutils.sameMonth(this.props.type, day, this.state.currentMonth)) {
       state = 'disabled';
     } else if (dateutils.sameDate(this.props.type, day, Moment().utc())) {
-      console.log('is same day');
-      console.log(day);
-      console.log(jMoment().utc());
-
       state = 'today';
     }
     let dayComp;
