@@ -1,6 +1,6 @@
 {
   "name": "react-native-calendars-jalaali",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "main": "src/index.js",
   "description": "React Native Calendar Components",
   "scripts": {
