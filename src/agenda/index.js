@@ -110,8 +110,8 @@ export default class AgendaView extends Component {
       calendarIsReady: false,
       calendarScrollable: false,
       firstResevationLoad: false,
-      selectedDay: parseDate(this.props.type, this.props.selected) || selectedDay,
-      topDay: parseDate(this.props.type, this.props.selected) || topDay,
+      selectedDay: parseDate(props.type, props.selected) || selectedDay,
+      topDay: parseDate(props.type, props.selected) || topDay,
     };
     this.currentMonth = this.state.selectedDay.clone();
     this.onLayout = this.onLayout.bind(this);
@@ -332,6 +332,7 @@ export default class AgendaView extends Component {
   render() {
     const agendaHeight = Math.max(0, this.viewHeight - HEADER_HEIGHT);
     const weekDaysNames = dateutils.weekDayNames(this.props.type, this.props.firstDay);
+
     const weekdaysStyle = [this.styles.weekdays, {
       opacity: this.state.scrollY.interpolate({
         inputRange: [agendaHeight - HEADER_HEIGHT, agendaHeight],

@@ -21,8 +21,7 @@
     "lodash.isequal": "^4.5.0",
     "moment": "^2.22.2",
     "moment-jalaali-react-native-calendar": "^1.0.3",
-    "prop-types": "^15.5.10",
-    "xdate": "^0.8.0"
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
