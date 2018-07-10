@@ -163,7 +163,7 @@ class ReactComp extends Component {
         } else {
           reservations = reservations.concat(res);
         }
-        iterator.addDays(1);
+        iterator.add(1, 'days');
       }
     }
     const scrollPosition = reservations.length;
@@ -173,7 +173,7 @@ class ReactComp extends Component {
       if (res) {
         reservations = reservations.concat(res);
       }
-      iterator.addDays(1);
+      iterator.add(1, 'days');
     }
 
     return {reservations, scrollPosition};
