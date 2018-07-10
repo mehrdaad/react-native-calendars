@@ -104,7 +104,7 @@ export default class AgendaView extends Component {
     this.scrollTimeout = undefined;
     this.headerState = 'idle';
     const selectedDay = dateutils.utc(props.type);
-    const topDay = dateutils.utc(props.type)''
+    const topDay = dateutils.utc(props.type);
     this.state = {
       scrollY: new Animated.Value(0),
       calendarIsReady: false,
