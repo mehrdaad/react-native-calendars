@@ -10,7 +10,7 @@ describe('calendar interface', () => {
 
     it('should accept UTC timestamp as argument', () => {
       const date = iface.parseDate(1479832134398);
-      expect(date.getTime()).toEqual(1479832134398);
+      expect(date.valueOf()).toEqual(1479832134398);
       expect(date.getTimezoneOffset()).toEqual(0);
     });
 
@@ -22,7 +22,7 @@ describe('calendar interface', () => {
 
     it('should expect object with UTC timestamp as argument', () => {
       const date = iface.parseDate({timestamp: 1479832134398});
-      expect(date.getTime()).toEqual(1479832134398);
+      expect(date.valueOf()).toEqual(1479832134398);
       expect(date.getTimezoneOffset()).toEqual(0);
     });
 

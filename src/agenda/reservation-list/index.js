@@ -155,7 +155,7 @@ class ReactComp extends Component {
     let reservations = [];
     if (this.state.reservations && this.state.reservations.length) {
       const iterator = this.state.reservations[0].day.clone();
-      while (iterator.getTime() < props.selectedDay.getTime()) {
+      while (iterator.valueOf() < props.selectedDay.valueOf()) {
         const res = this.getReservationsForDay(iterator, props);
         if (!res) {
           reservations = [];
