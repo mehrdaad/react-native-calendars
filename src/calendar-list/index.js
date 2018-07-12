@@ -136,9 +136,6 @@ class CalendarList extends Component {
     }
 
     const rowclone = this.state.rows;
-    console.log('row clone');
-    console.log(rowclone);
-
     const newrows = [];
     for (let i = 0; i < rowclone.length; i++) {
       let val = this.state.texts[i];
