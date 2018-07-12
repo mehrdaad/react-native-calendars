@@ -108,6 +108,20 @@ function utc(type) {
   return gregorian.utc();
 }
 
+function weekNumber(type, date) {
+  if (type === 'jalaali') {
+    return gregorian.weekNumber(date);
+  }
+  return jalaali.weekNumber(date);
+}
+
+function dayOfMonth(type, date) {
+  if (type === 'jalaali') {
+    return gregorian.dayOfMonth(date);
+  }
+  return jalaali.dayOfMonth(date);
+}
+
 module.exports = {
   weekDayNames,
   sameMonth,
@@ -123,5 +137,7 @@ module.exports = {
   diffMonths,
   firstDayOfMonth,
   addMonths,
-  utc
+  utc,
+  weekNumber,
+  dayOfMonth
 };

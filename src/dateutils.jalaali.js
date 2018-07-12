@@ -114,6 +114,14 @@ function utc() {
   return jMoment().utc();
 }
 
+function weekNumber(date) {
+  return date.isoWeek();
+}
+
+function dayOfMonth(date) {
+  return date.jDate();
+}
+
 module.exports = {
   weekDayNames,
   dayOfWeek,
@@ -130,5 +138,7 @@ module.exports = {
   diffMonths,
   firstDayOfMonth,
   addMonths,
-  utc
+  utc,
+  weekNumber,
+  dayOfMonth
 };

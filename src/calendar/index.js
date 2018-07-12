@@ -179,7 +179,7 @@ class Calendar extends Component {
       }
     } else {
       const DayComp = this.getDayComponent();
-      const date = this.props.type === 'jalaali' ? day.jDate() : day.date();
+      const date = dateutils.dayOfMonth(this.props.type, day);
       dayComp = (
                 <DayComp
                     key={id}
@@ -241,8 +241,7 @@ class Calendar extends Component {
     }, this);
 
     if (this.props.showWeekNumbers) {
-      const renderedWeekNumber = this.renderWeekNumber(days[days.length - 1]);
-      week.unshift(this.props.type === 'jalaali' ? renderedWeekNumber.jWeek() : renderedWeekNumber.isoWeek());
+      week.unshift(this.renderWeekNumber(dateutils.weekNumber(days[days.length - 1])));
     }
 
     return (<View style={this.style.week} key={id}>{week}</View>);
