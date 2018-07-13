@@ -461,9 +461,13 @@ An advanced agenda component that can display interactive listings for calendar 
   style={{}}
 />
 ```
+##TODO
+- RTL Support
+- Persian Language Support
+- Farsi digits
 
 ## Authors
-
+* [Mehrdad Shokri](https://github.com/mehrdaad) - Localization of the lib & Support for Jalaali calendar. - [@mehrdad_shokri](https://twitter.com/mehrdad_shokri)
 * [Tautvilas Mecinskas](https://github.com/tautvilas/) - Initial code - [@tautvilas](https://twitter.com/TautviIas)
 * Katrin Zotchev - Initial design - [@katrin_zot](https://twitter.com/katrin_zot)
 
