@@ -180,9 +180,6 @@ class Calendar extends Component {
     } else {
       const DayComp = this.getDayComponent();
       const date = dateutils.dayOfMonth(this.props.type, day);
-      console.log('date::::');
-      console.log(date);
-
       dayComp = (
                 <DayComp
                     key={id}

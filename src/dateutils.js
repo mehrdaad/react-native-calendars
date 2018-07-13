@@ -67,9 +67,9 @@ function rangeDate(type, date, range) {
 }
 
 function formatMonthYear(type, date) {
-  if (type === 'jalaali') {
+/*  if (type === 'jalaali') {
     return jalaali.formatMonthYear(date);
-  }
+  }*/
   return gregorian.formatMonthYear(date);
 }
 
