@@ -124,8 +124,6 @@ class CalendarList extends Component {
     let diffMonths = Math.round(dateutils.diffMonths(this.props.type, firstDayOfOpenDate, firstDayOfScrollTo));
     const size = this.props.horizontal ? this.props.calendarWidth : this.props.calendarHeight;
     const scrollAmount = (size * this.props.pastScrollRange) + (diffMonths * size);
-        //console.log(month, this.state.openDate);
-        //console.log(scrollAmount, diffMonths);
     this.listView.scrollToOffset({offset: scrollAmount, animated: false});
   }
 
@@ -136,10 +134,6 @@ class CalendarList extends Component {
     if (nextCurrent && current && nextCurrent.valueOf() !== current.valueOf()) {
       this.scrollToMonth(nextCurrent);
     }
-    console.log('will receive props');
-    console.log(this.state.rows);
-
-
     const rowclone = this.state.rows;
     const newrows = [];
     for (let i = 0; i < rowclone.length; i++) {
@@ -150,7 +144,6 @@ class CalendarList extends Component {
       }
       newrows.push(val);
     }
-    console.log(newrows);
 
     this.setState({
       rows: newrows
