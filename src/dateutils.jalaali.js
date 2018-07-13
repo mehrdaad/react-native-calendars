@@ -99,7 +99,7 @@ function monthYearFormat() {
 }
 
 function diffMonths(date1, date2) {
-  date1.diff(date2, 'jMonths');
+  return date1.diff(date2, 'jMonths');
 }
 
 function firstDayOfMonth(date) {
