@@ -465,6 +465,7 @@ An advanced agenda component that can display interactive listings for calendar 
 - [ ] RTL Support
 - [ ] Persian Language Support
 - [ ] Farsi digits
+- [ ] Use class based approach for ``dateutil.js`` and ``interface.js``
 
 ## Authors
 * [Mehrdad Shokri](https://github.com/mehrdaad) - Localization of the lib & Support for Jalaali calendar. - [@mehrdad_shokri](https://twitter.com/mehrdad_shokri)
