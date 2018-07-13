@@ -39,7 +39,7 @@ class ReservationListItem extends Component {
     if (date) {
       return (
         <View style={this.styles.day}>
-          <Text allowFontScaling={false} style={[this.styles.dayNum, today]}>{date.date()}</Text>
+          <Text allowFontScaling={false} style={[this.styles.dayNum, today]}>{dateutils.dayOfMonth(this.props.type, date)}</Text>
           <Text allowFontScaling={false} style={[this.styles.dayText, today]}>{dateutils.weekDayNames(this.props.type)[date.day()]}</Text>
         </View>
       );

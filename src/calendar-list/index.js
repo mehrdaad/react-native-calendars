@@ -52,6 +52,7 @@ class CalendarList extends Component {
     scrollEnabled: true,
     scrollsToTop: false,
     removeClippedSubviews: Platform.OS === 'android' ? false : true,
+    type: 'gregorian',
   }
 
   constructor(props) {

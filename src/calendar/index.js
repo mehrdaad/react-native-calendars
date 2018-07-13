@@ -78,6 +78,7 @@ class Calendar extends Component {
         // Calendar type
     type: PropTypes.oneOf(['gregorian', 'jalaali']),
   };
+
   static defaultProps = {
     type: 'gregorian',
   };

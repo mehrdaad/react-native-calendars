@@ -89,8 +89,9 @@ export default class AgendaView extends Component {
         // Display loading indicador. Default = false
     displayLoadingIndicator: PropTypes.bool,
         //calendar type.
-    type: PropTypes.oneOf(['gregorian','jalaali'])
+    type: PropTypes.oneOf(['gregorian', 'jalaali'])
   };
+
   static defaultProps = {
     type: 'gregorian',
   }

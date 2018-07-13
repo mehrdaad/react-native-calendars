@@ -34,8 +34,12 @@ class ReactComp extends Component {
     refreshControl: PropTypes.element,
     refreshing: PropTypes.bool,
     onRefresh: PropTypes.func,
+    type: PropTypes.oneOf(['jalaali', 'gregorian'])
   };
 
+  static defaultProps = {
+    type: 'gregorian',
+  }
   constructor(props) {
     super(props);
     this.styles = styleConstructor(props.theme);
@@ -118,6 +122,7 @@ class ReactComp extends Component {
           renderEmptyDate={this.props.renderEmptyDate}
           theme={this.props.theme}
           rowHasChanged={this.props.rowHasChanged}
+          type={this.props.type}
         />
       </View>
     );
