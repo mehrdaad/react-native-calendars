@@ -180,6 +180,9 @@ class Calendar extends Component {
     } else {
       const DayComp = this.getDayComponent();
       const date = dateutils.dayOfMonth(this.props.type, day);
+      console.log('date::::');
+      console.log(date);
+
       dayComp = (
                 <DayComp
                     key={id}
@@ -241,7 +244,7 @@ class Calendar extends Component {
     }, this);
 
     if (this.props.showWeekNumbers) {
-      week.unshift(this.renderWeekNumber(dateutils.weekNumber(days[days.length - 1])));
+      week.unshift(this.renderWeekNumber(dateutils.weekNumber(this.props.type, days[days.length - 1])));
     }
 
     return (<View style={this.style.week} key={id}>{week}</View>);
@@ -262,6 +265,7 @@ class Calendar extends Component {
         indicator = true;
       }
     }
+
     return (
             <View style={[this.style.container, this.props.style]}>
                 <CalendarHeader

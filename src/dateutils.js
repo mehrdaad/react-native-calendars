@@ -110,16 +110,16 @@ function utc(type) {
 
 function weekNumber(type, date) {
   if (type === 'jalaali') {
-    return gregorian.weekNumber(date);
+    return jalaali.weekNumber(date);
   }
-  return jalaali.weekNumber(date);
+  return gregorian.weekNumber(date);
 }
 
 function dayOfMonth(type, date) {
   if (type === 'jalaali') {
-    return gregorian.dayOfMonth(date);
+    return jalaali.dayOfMonth(date);
   }
-  return jalaali.dayOfMonth(date);
+  return gregorian.dayOfMonth(date);
 }
 
 module.exports = {
