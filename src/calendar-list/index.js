@@ -130,22 +130,28 @@ class CalendarList extends Component {
   }
 
   componentWillReceiveProps(props) {
+
     const current = parseDate(this.props.type, this.props.current);
     const nextCurrent = parseDate(props.type, props.current);
     if (nextCurrent && current && nextCurrent.valueOf() !== current.valueOf()) {
       this.scrollToMonth(nextCurrent);
     }
+    console.log('will receive props');
+    console.log(this.state.rows);
+
 
     const rowclone = this.state.rows;
     const newrows = [];
     for (let i = 0; i < rowclone.length; i++) {
       let val = this.state.texts[i];
-      if (rowclone[i].getTime) {
+      if (rowclone[i].format) {
         val = rowclone[i].clone();
         val.propbump = rowclone[i].propbump ? rowclone[i].propbump + 1 : 1;
       }
       newrows.push(val);
     }
+    console.log(newrows);
+
     this.setState({
       rows: newrows
     });
@@ -167,7 +173,7 @@ class CalendarList extends Component {
     for (let i = 0; i < rowclone.length; i++) {
       let val = rowclone[i];
       const rowShouldBeRendered = rowIsCloseToViewable(i, 1);
-      if (rowShouldBeRendered && !rowclone[i].getTime) {
+      if (rowShouldBeRendered && !rowclone[i].format) {
         val = dateutils.addMonths(this.props.type, this.state.openDate, i - this.props.pastScrollRange);
       } else if (!rowShouldBeRendered) {
         val = this.state.texts[i];
