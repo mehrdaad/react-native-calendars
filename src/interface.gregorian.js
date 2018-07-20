@@ -25,13 +25,13 @@ function parseDate(d) {
     return Moment.utc(d.timestamp);
   } else if (d instanceof Moment) { // moment
     return Moment.utc(d.format('YYYY-MM-DD'));
-  } else if (d.getTime) { // javascript date
+  } else if (d.getTime) {
     const dateString = d.getFullYear() + '-' + padNumber((d.getMonth() + 1)) + '-' + padNumber(d.getDate());
     return Moment.utc(dateString);
   } else if (d.year) {
     const dateString = d.year + '-' + padNumber(d.month) + '-' + padNumber(d.day);
     return Moment.utc(dateString);
-  } else if (d) { // timestamp number or date formatted as string
+  } else if (d) {
     return Moment.utc(d);
   }
 }
