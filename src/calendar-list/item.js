@@ -25,7 +25,7 @@ class CalendarListItem extends Component {
 
   render() {
     const row = this.props.item;
-    if (row.valueOf) {
+    if (row.format) {
       return (
         <Calendar
           type={this.props.type}
