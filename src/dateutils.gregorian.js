@@ -109,7 +109,7 @@ function utc() {
 }
 
 function weekNumber(date) {
-  return date.jWeek();
+  return date.week();
 }
 
 function dayOfMonth(date) {
