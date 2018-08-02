@@ -16,7 +16,7 @@ function sameDate(type, a, b) {
   }
   const aDate = a.toDate();
   const bDate = b.toDate();
-  return aDate.getFullYear() === b.getFullYear() &&
+  return aDate.getFullYear() === bDate.getFullYear() &&
       aDate.getMonth() === bDate.getMonth() &&
       aDate.getDate() === bDate.getDate();
 }
