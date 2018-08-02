@@ -32,14 +32,8 @@ class CalendarHeader extends Component {
     this.style = styleConstructor(props.theme, props.type === 'jalaali');
     this.addMonth = this.addMonth.bind(this);
     this.substractMonth = this.substractMonth.bind(this);
-    if(props.type === 'jalaali'){
-      this.onPressLeft = this.onPressRight.bind(this);
-      this.onPressRight = this.onPressLeft.bind(this);
-    }
-    else{
-      this.onPressLeft = this.onPressLeft.bind(this);
-      this.onPressRight = this.onPressRight.bind(this);
-    }
+    this.onPressLeft = this.onPressRight.bind(this);
+    this.onPressRight = this.onPressLeft.bind(this);
     this.getDefaultFormat = this.getDefaultFormat.bind(this);
     this.state.monthFormat = this.getDefaultFormat(props.monthFormat);
   }
@@ -106,10 +100,11 @@ class CalendarHeader extends Component {
     let leftArrow = <View/>;
     let rightArrow = <View/>;
     let weekDaysNames = weekDayNames(this.props.type, this.props.firstDay);
+    const isJalaali = this.props.type === 'jalaali';
     if (!this.props.hideArrows) {
       leftArrow = (
                 <TouchableOpacity
-                    onPress={this.onPressLeft}
+                    onPress={ isJalaali ? this.onPressRight : this.onPressLeft }
                     style={this.style.arrow}
                     hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}
                     testID={CHANGE_MONTH_LEFT_ARROW}
@@ -124,7 +119,7 @@ class CalendarHeader extends Component {
             );
       rightArrow = (
                 <TouchableOpacity
-                    onPress={this.onPressRight}
+                    onPress={isJalaali ? this.onPressLeft : this.onPressRight }
                     style={this.style.arrow}
                     hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}
                     testID={CHANGE_MONTH_RIGHT_ARROW}
