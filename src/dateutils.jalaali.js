@@ -43,7 +43,7 @@ function month(xd) {
 }
 
 function weekDayNames(firstDayOfWeek = 0) {
-  let weekDaysNames = jMoment.weekdaysShort();
+  let weekDaysNames = jMoment.weekdaysMin();
   const dayShift = (firstDayOfWeek - 1) % 7;
   if (dayShift) {
     weekDaysNames = weekDaysNames.slice(dayShift).concat(weekDaysNames.slice(0, dayShift));

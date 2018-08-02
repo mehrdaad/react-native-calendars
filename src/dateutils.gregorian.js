@@ -41,7 +41,7 @@ function month(xd) {
 }
 
 function weekDayNames(firstDayOfWeek = 0) {
-  let weekDaysNames = Moment.weekdaysShort();
+  let weekDaysNames = Moment.weekdaysMin();
   const dayShift = firstDayOfWeek % 7;
   if (dayShift) {
     weekDaysNames = weekDaysNames.slice(dayShift).concat(weekDaysNames.slice(0, dayShift));
