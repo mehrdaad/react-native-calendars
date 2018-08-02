@@ -4,6 +4,10 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import styleConstructor from './style';
 import {weekDayNames, formatMonthYear, monthYearFormat} from '../../dateutils';
+import {
+  CHANGE_MONTH_LEFT_ARROW,
+  CHANGE_MONTH_RIGHT_ARROW
+} from '../../testIDs';
 
 const Moment = require('moment');
 
@@ -102,6 +106,7 @@ class CalendarHeader extends Component {
                     onPress={this.onPressLeft}
                     style={this.style.arrow}
                     hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}
+                    testID={CHANGE_MONTH_LEFT_ARROW}
                 >
                     {this.props.renderArrow
                         ? this.props.renderArrow('left')
@@ -116,6 +121,7 @@ class CalendarHeader extends Component {
                     onPress={this.onPressRight}
                     style={this.style.arrow}
                     hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}
+                    testID={CHANGE_MONTH_RIGHT_ARROW}
                 >
                     {this.props.renderArrow
                         ? this.props.renderArrow('right')
