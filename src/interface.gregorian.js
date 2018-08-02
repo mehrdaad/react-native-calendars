@@ -13,7 +13,7 @@ function xdateToData(moment) {
     year: moment.year(),
     month: moment.month() + 1,
     day: moment.date(),
-    timestamp: Moment.utc(dateString).valueOf(),
+    timestamp: moment.valueOf(),
     dateString: dateString
   };
 }
