@@ -10,11 +10,15 @@ function sameMonth(type, a, b) {
   return gregorian.sameMonth(a, b);
 }
 
-function sameDate(type, a, b) {
-  return a instanceof Moment && b instanceof Moment &&
-        a.year() === b.year() &&
-        a.month() === b.month() &&
-        a.date() === b.date();
+function sameDate(a, b) {
+  if(!(a instanceof Moment) || !(b instanceof Moment)) {
+    return false;
+  }
+  const aDate = a.toDate();
+  const bDate = b.toDate();
+  return aDate.getFullYear() === b.getFullYear() &&
+      aDate.getMonth() === bDate.getMonth() &&
+      aDate.getDate() === bDate.getDate();
 }
 
 function isGTE(type, a, b) {

@@ -7,13 +7,6 @@ function sameMonth(a, b) {
         a.jMonth() === b.jMonth();
 }
 
-function sameDate(a, b) {
-  return a instanceof Moment && b instanceof Moment &&
-        a.year() === b.year() &&
-        a.month() === b.month() &&
-        a.date() === b.date();
-}
-
 function isGTE(a, b) {
   return b.diff(a, 'days') < 1;
 }
@@ -126,7 +119,6 @@ module.exports = {
   weekDayNames,
   dayOfWeek,
   sameMonth,
-  sameDate,
   month,
   page,
   fromTo,
