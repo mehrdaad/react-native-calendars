@@ -407,6 +407,7 @@ export default class AgendaView extends Component {
                               this.calendar.scrollToDay(this.state.selectedDay.clone(), this.calendarOffset(), false);
                             }}
                             type={this.props.type}
+                            calendarWidth={this.viewWidth}
                             theme={this.props.theme}
                             onVisibleMonthsChange={this.onVisibleMonthsChange.bind(this)}
                             ref={(c) => this.calendar = c}
