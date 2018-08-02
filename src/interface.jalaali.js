@@ -14,7 +14,7 @@ function xdateToData(moment) {
     year: moment.jYear(),
     month: moment.jMonth() + 1,
     day: moment.jDate(),
-    timestamp: jMoment.utc(dateString, 'jYYYY-jMM-jDD').valueOf(),
+    timestamp: moment.valueOf(),
     dateString: dateString
   };
 }
