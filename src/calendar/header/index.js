@@ -58,9 +58,7 @@ class CalendarHeader extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (
-            formatMonthYear(nextProps.type, nextProps.month) !== formatMonthYear(this.props.type, this.props.month)
-        ) {
+    if (nextProps.month.toDate().getMonth() !== this.props.month.toDate().getMonth()) {
       return true;
     }
     if (nextProps.showIndicator !== this.props.showIndicator) {
