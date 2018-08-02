@@ -117,7 +117,6 @@ function dayOfMonth(date) {
 
 module.exports = {
   weekDayNames,
-  dayOfWeek,
   sameMonth,
   month,
   page,
