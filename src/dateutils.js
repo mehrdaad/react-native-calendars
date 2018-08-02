@@ -10,7 +10,7 @@ function sameMonth(type, a, b) {
   return gregorian.sameMonth(a, b);
 }
 
-function sameDate(type, a, b) {
+function sameDate(a, b) {
   if(!(a instanceof Moment) || !(b instanceof Moment)) {
     return false;
   }

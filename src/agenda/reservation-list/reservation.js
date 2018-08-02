@@ -35,7 +35,7 @@ class ReservationListItem extends Component {
       return this.props.renderDay(date ? xdateToData(this.props.type, date) : undefined, item);
     }
     const todayDate = dateutils.utc(this.props.type);
-    const today = dateutils.sameDate(this.props.type, date, todayDate) ? this.styles.today : undefined;
+    const today = dateutils.sameDate(date, todayDate) ? this.styles.today : undefined;
     if (date) {
       return (
         <View style={this.styles.day}>

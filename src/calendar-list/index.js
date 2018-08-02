@@ -107,7 +107,7 @@ class CalendarList extends Component {
       const days = dateutils.page(this.props.type, day, this.props.firstDay);
       for (let i = 0; i < days.length; i++) {
         week = Math.floor(i / 7);
-        if (dateutils.sameDate(this.props.type, days[i], day)) {
+        if (dateutils.sameDate(days[i], day)) {
           scrollAmount += 46 * week;
           break;
         }

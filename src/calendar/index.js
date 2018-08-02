@@ -168,7 +168,7 @@ class Calendar extends Component {
       state = 'disabled';
     } else if (!dateutils.sameMonth(this.props.type, day, this.state.currentMonth)) {
       state = 'disabled';
-    } else if (dateutils.sameDate(this.props.type, day, dateutils.utc(this.props.type))) {
+    } else if (dateutils.sameDate(day, dateutils.utc(this.props.type))) {
       state = 'today';
     }
     let dayComp;
