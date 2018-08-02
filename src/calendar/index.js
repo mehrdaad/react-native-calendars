@@ -113,7 +113,7 @@ class Calendar extends Component {
   }
 
   updateMonth(day, doNotTriggerListeners) {
-    if (day.format('YYYY MM') === this.state.currentMonth.format('YYYY MM')) {
+    if (day.toDate().getMonth() === this.state.currentMonth.toDate().getMonth()) {
       return;
     }
     this.setState({
