@@ -85,7 +85,7 @@ class Calendar extends Component {
 
   constructor(props) {
     super(props);
-    this.style = styleConstructor(props.theme);
+    this.style = styleConstructor(props.theme, props.type === 'jalaali');
     let currentMonth;
     if (props.current) {
       currentMonth = parseDate(props.type, props.current);

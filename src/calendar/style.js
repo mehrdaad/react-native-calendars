@@ -3,7 +3,7 @@ import * as defaultStyle from '../style';
 
 const STYLESHEET_ID = 'stylesheet.calendar.main';
 
-export default function getStyle(theme={}) {
+export default function getStyle(theme={}, isJalaali = false) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
     container: {
@@ -17,7 +17,7 @@ export default function getStyle(theme={}) {
     week: {
       marginTop: 7,
       marginBottom: 7,
-      flexDirection: 'row',
+      flexDirection: isJalaali? 'row-reverse': 'row',
       justifyContent: 'space-around'
     },
     dayContainer: {

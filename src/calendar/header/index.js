@@ -29,11 +29,17 @@ class CalendarHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.style = styleConstructor(props.theme);
+    this.style = styleConstructor(props.theme, props.type === 'jalaali');
     this.addMonth = this.addMonth.bind(this);
     this.substractMonth = this.substractMonth.bind(this);
-    this.onPressLeft = this.onPressLeft.bind(this);
-    this.onPressRight = this.onPressRight.bind(this);
+    if(props.type === 'jalaali'){
+      this.onPressLeft = this.onPressRight.bind(this);
+      this.onPressRight = this.onPressLeft.bind(this);
+    }
+    else{
+      this.onPressLeft = this.onPressLeft.bind(this);
+      this.onPressRight = this.onPressRight.bind(this);
+    }
     this.getDefaultFormat = this.getDefaultFormat.bind(this);
     this.state.monthFormat = this.getDefaultFormat(props.monthFormat);
   }
