@@ -18,7 +18,7 @@ function fromTo(a, b) {
   const days = [];
   let from = +a, to = +b;
   for (; from <= to; from = new Moment(from).add(1, 'days').valueOf()) {
-    days.push((new Moment(from)));
+    days.push(new Moment(from).locale('en-US'));
   }
   return days;
 }
