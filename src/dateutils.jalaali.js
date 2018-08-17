@@ -1,5 +1,6 @@
 const Moment = require('moment');
 const jMoment = require('moment-jalaali-react-native-calendar');
+const enLocale = require('moment/locale/en-gb');
 
 function sameMonth(a, b) {
   return a instanceof Moment && b instanceof Moment &&
@@ -19,7 +20,7 @@ function fromTo(a, b) {
   const days = [];
   let from = +a, to = +b;
   for (; from <= to; from = new jMoment(from).add(1, 'days').valueOf()) {
-    days.push(new jMoment(from).locale('en-US'));
+    days.push(new jMoment(from).locale('en-gb', enLocale));
   }
   return days;
 }
