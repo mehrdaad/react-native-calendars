@@ -113,7 +113,20 @@ function weekNumber(date) {
 }
 
 function dayOfMonth(date) {
-  return date.jDate();
+  return englishToPersian(date.jDate());
+}
+
+function englishToPersian(number) {
+  return number.toString().replace(/\d+/g, function (digit) {
+    const enDigitArr = [], peDigitArr = [];
+    for (let i = 0; i < digit.length; i++) {
+      enDigitArr.push(digit.charCodeAt(i));
+    }
+    for (let j = 0; j < enDigitArr.length; j++) {
+      peDigitArr.push(String.fromCharCode(enDigitArr[j] + ((!!number && number === true) ? 1584 : 1728)));
+    }
+    return peDigitArr.join('');
+  });
 }
 
 module.exports = {
